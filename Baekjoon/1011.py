@@ -1,8 +1,11 @@
-t = int(input())
-tc = 0
+import sys
+
+
+t = int(sys.stdin.readline())
+
 ans = []
-while tc < t:
-    x, y = map(int, input().split())
+for a in range(t):
+    x, y = map(int, sys.stdin.readline().split())
     cnt = 0
     r = x
     while r != y-1:      
@@ -14,6 +17,6 @@ while tc < t:
             r = r+cnt-1
         cnt+=1
     ans.append(cnt+1)
-    tc += 1
+    
 for x in ans:
     print(x)
