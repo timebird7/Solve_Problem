@@ -1,7 +1,7 @@
 T = int(input())
 
 for x in range(T):
-    a, b, c = list(map(int,list(input().split())))    
+    a, b, c = map(int,list(input().split()))  
     nums = list(map(int,list(input().split())))    
     n = 0
     cnt = 0
