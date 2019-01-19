@@ -1,3 +1,17 @@
+n = int(input())
+
+
+cnt = 1
+result = 1
+
+while cnt < n:
+    cnt += result * 6
+    result += 1
+
+print(result)
+
+
+
 # n = int(input())
 
 
@@ -16,11 +30,11 @@
 #             continue
 #         break
 
+# print(ans)
+# #     print(ans[-1])
 
-#     print(ans[-1])
-# n= int(input())
 # ans = '1'
-# for x in range(2,int(n/100000)):
+# for x in range(2,int(n/4)):
 #     ans += f'{x}'*6*(x-1)
 #     if len(ans) > n:
 #         print(x)
