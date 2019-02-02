@@ -26,6 +26,8 @@ for tc in range(TC):
                 strlist[y][x] = strlist[x][y]
 
     for s in strlist:
+
+        
         for i in range(N-M+1):
             cnt = 0
             j = 0
