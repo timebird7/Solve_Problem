@@ -6,4 +6,5 @@ for x in nums:
     if n >= x:
         n -= x
         cnt += 1
+        
 print(cnt)
