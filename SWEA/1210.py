@@ -12,7 +12,7 @@ for i in range(10):
     nums = [[0 for x in range(102)] for y in range(100)]
 
     for j in range(100):
-        nums[j][1:101] = list(map(int, list(input().split())))
+        nums[j][1:101] = list(map(int, input().split()))
 
     start = findtwo(nums)
 

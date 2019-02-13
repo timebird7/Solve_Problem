@@ -1,41 +1,14 @@
-TC = int(input())
+M = 0   # 길이
+s = ''  # 문자열
 
-for tc in range(TC):
-    N, M = list(map(int,input().split()))
-    strlist = [[] for x in range(N)]
+def isPalinH(x,y):
+    for i in range(M//2):
+        if s[x][y+i] != s[x][y+(M-1)-i]:
+            return False
+    return True
 
-    for i in range(N):
-        strlist[i] = input()
-    result = ''
-
-    for s in strlist:
-        for i in range(N-M+1):
-            cnt = 0
-            j = 0
-            while s[i+j] == s[i+M-j-1] :
-                cnt += 1
-                j += 1
-                if cnt >= (M//2) + 1:
-                    result = s[i:i+M]
-                    break
-
-    for x in range(N):
-        for y in range(N):
-            if x < y:
-                strlist[x][y] = strlist[y][x]
-                strlist[y][x] = strlist[x][y]
-
-    for s in strlist:
-
-        
-        for i in range(N-M+1):
-            cnt = 0
-            j = 0
-            while s[i+j] == s[i+M-j-1] :
-                cnt += 1
-                j += 1
-                if cnt >= (M//2) + 1:
-                    result = s[i:i+M]
-                    break
-
-    print(result)
+def isPalinV(x,y):
+    for i in range(M//2):
+        if s[x+i][y] != s[x+(M-1)-i][y]:
+            return False
+    return True
