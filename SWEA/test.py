@@ -1,10 +1,12 @@
-class my_list(list):
+class list(list):
     def get(self, i):
-        try:
-            return self[i]
-        except IndexError:
-            return False
-
+        if i >= 0:
+            try:
+                return self[i]
+            except IndexError:
+                return 0
+        else:
+            return 0
 
 def findtwo(nums):
     for i in range(100):
@@ -17,10 +19,10 @@ for i in range(10):
     start = 0
     
     m = 99
-    nums = [[0 for x in range(100)] for y in range(100)]
+    nums = list(list(0 for x in range(100)) for y in range(100))
 
     for j in range(100):
-        nums[j] = my_list(map(int, input().split()))
+        nums[j] = list(map(int, input().split()))
 
     start = findtwo(nums)
 
@@ -28,7 +30,7 @@ for i in range(10):
         
         if nums[m].get(start-1):
             while nums[m].get(start-1):
-                start -= 1
+                start -= 1            
             m -= 1
             continue
         
