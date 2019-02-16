@@ -44,3 +44,4 @@ for i in range(10):
             m -= 1
         
     print(f'#{n} {start}')
+
