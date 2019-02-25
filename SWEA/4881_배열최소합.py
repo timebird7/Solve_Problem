@@ -4,7 +4,8 @@ def backtrack(input,k,visited,nsum):
     if nsum > result:
         return
     if k == input:
-        result = min(result,nsum)
+        if nsum < result:
+            result = nsum
     else:
         for i in range(input):
             if visited[i]==1:
