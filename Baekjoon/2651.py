@@ -4,12 +4,12 @@ nums = [0]+list(map(int,input().split()))
 time = [0]+list(map(int,input().split()))
 
 tmp = 0
-start = []
+start = [[]]
 ways = []
 for i in range(1,N+2):
     tmp += nums[i]
     if tmp <= D:
-        start.append(i)
+        start[0].append(i)
 
 for i in range(1,N+2):
     tmp = 0
@@ -18,4 +18,4 @@ for i in range(1,N+2):
         if tmp <= D:
             ways.append([i,j])
 
-print(ways)
+
