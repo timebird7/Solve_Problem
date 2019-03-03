@@ -16,8 +16,8 @@ for tc in range(TC):
         else:
             ans = ans + nums[i]
             
-        if len(ans) > 300:
-            ans = ans[-300:]
+        if N > 10 and len(ans) > N:
+            ans = ans[-N-10:]
 
     print(f'#{tc+1}',end='')
     for a in ans[:-11:-1]:
