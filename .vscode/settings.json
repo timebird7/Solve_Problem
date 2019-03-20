@@ -22,5 +22,8 @@
         "type_traits": "cpp",
         "typeinfo": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylamaEnabled": false,
+    "python.linting.enabled": true
 }
