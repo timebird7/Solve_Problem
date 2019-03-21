@@ -17,24 +17,23 @@ def makebi(M):
     M = M.replace('F','1111')
     return M
  
-def divcode(binum):
+def divcode(binum, codes):
     binum = binum.lstrip('0')
     tmp = ''
-    global codes
-    flag = ['0']
+    flag = '0'
     for b in binum:
         if b != flag[-1]:
-            flag.append(b)
+            flag += b
              
         if len(flag) > 32:
-            flag = ['0']
+            flag = '0'
             a = 56 - len(tmp)%56
             tmp = '0'*a + tmp
             codes.add(tmp)
             tmp = ''
         elif len(flag) > 1 and len(flag) <= 32:
             tmp += b
-    return None
+    return codes
  
 def convert(pwd, x):
     result = [0,0,0,0,0,0,0,0]
@@ -74,20 +73,20 @@ def convert(pwd, x):
  
 TC = int(input())
  
-for tc in range(TC):
+for tc in range(1,TC+1):
     N, M = list(map(int,input().split()))
-    nums = []
+    nums = set()
     ans = 0
     codes = set()
  
     for n in range(N):
         tmp = input().lstrip('0')
-        if tmp and tmp not in nums:
-            nums.append(tmp)
+        if tmp:
+            nums.add(tmp)
      
     for n in nums:
         binum = makebi(n)
-        divcode(binum)
+        codes = divcode(binum, codes)
  
     for code in codes:
         x = len(code)//56
@@ -98,9 +97,6 @@ for tc in range(TC):
         if result%10 == 0:
             ans += sum(pwd)
         else:
-            result = 0
             continue
-
-    print(len(codes))
  
-    print(f'#{tc+1} {ans}')
+    print(f'#{tc} {ans}')
