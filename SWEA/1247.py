@@ -10,7 +10,7 @@ for tc in range(1, TC+1):
     result = 1000000
 
     order = [i for i in range(N)]
-    ways = list(permutations(order))
+    ways = permutations(order)
 
     for way in ways:        
         tmp = 0
@@ -24,6 +24,5 @@ for tc in range(1, TC+1):
             tmp += abs(start[0] - home[0]) + abs(start[1] - home[1])
             result = min(result, tmp)
             
-
     print(f'#{tc} {result}')
 
