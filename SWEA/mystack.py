@@ -22,7 +22,3 @@ class Stack:
             return None
         else:
             return self.stack[self.pnt-1]
-
-
-
-
