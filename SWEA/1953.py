@@ -4,7 +4,7 @@ def cango(x,y,d):
     global N,M,nums,possible
     if (x,y) in possible:
         return False    
-    if x<0 or x>=N or y<0 or y>=M:
+    if x<0 or x>N-1 or y<0 or y>M-1:
         return False
     elif nums[x][y] == 0:
         return False
@@ -34,62 +34,64 @@ for tc in range(1,TC+1):
         nums[n] = list(map(int, input().split()))
 
     starts = set()
-    starts.add((R,C))
     t = 1
     possible = set()
-    possible.add((R,C))
+    if nums[R][C]:
+        starts.add((R,C))
+        possible.add((R,C))
 
-    while True:
-        t += 1
-        tmp = set()
-        for start in starts:
-            x, y = start
-            if nums[x][y] == 1:
-                if cango(x,y+1,3):
-                    tmp.add((x,y+1))
-                if cango(x,y-1,2):
-                    tmp.add((x,y-1))
-                if cango(x+1,y,1):
-                    tmp.add((x+1,y))
-                if cango(x-1,y,0):
-                    tmp.add((x-1,y))
-            elif nums[x][y] == 2:
-                if cango(x-1,y,0):
-                    tmp.add((x-1,y))
-                if cango(x+1,y,1):
-                    tmp.add((x+1,y))
-            elif nums[x][y] == 3:
-                if cango(x,y-1,2):
-                    tmp.add((x,y-1))
-                if cango(x,y+1,3):
-                    tmp.add((x,y+1))
-            elif nums[x][y] == 4:
-                if cango(x-1,y,0):
-                    tmp.add((x-1,y))
-                if cango(x,y+1,3):
-                    tmp.add((x,y+1))
-            elif nums[x][y] == 5:
-                if cango(x+1,y,1):
-                    tmp.add((x+1,y))
-                if cango(x,y+1,3):
-                    tmp.add((x,y+1))
-            elif nums[x][y] == 6:
-                if cango(x,y-1,2):
-                    tmp.add((x,y-1))
-                if cango(x+1,y,1):
-                    tmp.add((x+1,y))
-            elif nums[x][y] == 7:
-                if cango(x-1,y,0):
-                    tmp.add((x-1,y))
-                if cango(x,y-1,2):
-                    tmp.add((x,y-1))
+    if L > 1:
+        while True:
+            t += 1
+            tmp = set()
+            for start in starts:
+                x, y = start
+                if nums[x][y] == 1:
+                    if cango(x,y+1,3):
+                        tmp.add((x,y+1))
+                    if cango(x,y-1,2):
+                        tmp.add((x,y-1))
+                    if cango(x+1,y,1):
+                        tmp.add((x+1,y))
+                    if cango(x-1,y,0):
+                        tmp.add((x-1,y))
+                elif nums[x][y] == 2:
+                    if cango(x-1,y,0):
+                        tmp.add((x-1,y))
+                    if cango(x+1,y,1):
+                        tmp.add((x+1,y))
+                elif nums[x][y] == 3:
+                    if cango(x,y-1,2):
+                        tmp.add((x,y-1))
+                    if cango(x,y+1,3):
+                        tmp.add((x,y+1))
+                elif nums[x][y] == 4:
+                    if cango(x-1,y,0):
+                        tmp.add((x-1,y))
+                    if cango(x,y+1,3):
+                        tmp.add((x,y+1))
+                elif nums[x][y] == 5:
+                    if cango(x+1,y,1):
+                        tmp.add((x+1,y))
+                    if cango(x,y+1,3):
+                        tmp.add((x,y+1))
+                elif nums[x][y] == 6:
+                    if cango(x,y-1,2):
+                        tmp.add((x,y-1))
+                    if cango(x+1,y,1):
+                        tmp.add((x+1,y))
+                elif nums[x][y] == 7:
+                    if cango(x-1,y,0):
+                        tmp.add((x-1,y))
+                    if cango(x,y-1,2):
+                        tmp.add((x,y-1))
 
-        starts = copy.copy(tmp)
-        possible = possible.union(tmp)
+            starts = copy.copy(tmp)
+            possible = possible.union(tmp)
 
-        if t == L:
-            break
-        if not starts:
-            break
+            if t == L:
+                break
+            if not starts:
+                break
 
     print(f'#{tc} {len(possible)}')
