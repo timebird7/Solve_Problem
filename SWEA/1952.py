@@ -1,36 +1,48 @@
+from copy import copy
+
 TC = int(input())
 
 for tc in range(1,TC+1):
     price = list(map(int,input().split()))
     days = list(map(int,input().split()))
-    result = [0]
-    result_ = [0]
+    result = set()
+    result.add(0)
+    result_ = set()
+    result_.add(0)
     flag = 0
+    i = 0
 
-    
-    for day in days:
-        tmp = []        
+    while True:    
+        tmp = set()
+        tmp_ = set()        
         flag -= 1
-        if day:
-            p1 = price[0] * day
-            p2 = price[1]
-            if flag <= 0:
-                for r in result_:
-                    tmp.append(r+price[2])
-                print(tmp)
-                result_ = result[:]
+        if days[i]:            
+            if flag <= 0:                
+                for r in result:
+                    tmp_.add(r+price[2])
                 flag = 3
-                
-        
+                result_ = copy(tmp_)
+
             for r in result:
-                tmp.append(r+p1)
-                tmp.append(r+p2)
-            
-            
+                
+                tmp.add(r+price[0] * days[i])
+                tmp.add(r+price[1])
+            result = copy(tmp)
+            print(result)
+            print(result_)
 
-            result = tmp[:]
+        if flag == 1:
+            result = result.union(result_)
 
-    result.append(price[3])
 
-    print(min(result))
+        i += 1
+
+        if i == 12:
+            if flag <= 0:
+                result = result.union(result_)
+            break
+
+    result.add(price[3])    
+
+    print(f'#{tc} {min(result)}')
             
