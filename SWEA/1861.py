@@ -1,8 +1,8 @@
 def cango(i,j,ni,nj):
-    global N,visited
+    global N
     if ni<0 or ni>N-1 or nj<0 or nj>N-1:
         return False    
-    if visited[ni][nj] == 0 and abs(nums[i][j] - nums[ni][nj]) == 1:
+    if nums[ni][nj] - nums[i][j] == 1:
         return True
     return False
 
@@ -21,14 +21,12 @@ for tc in range(1,TC+1):
     for i in range(N):
         for j in range(N):
             start = (i,j)
-            cnt = 0 
-            visited = [[0]*N for a in range(N)]       
+            cnt = 0        
 
             while True:
                 cnt += 1
                 flag = 1
                 x,y = start
-                visited[x][y] = 1
 
                 if cango(x,y,x-1,y):
                     start = (x-1,y)
@@ -47,14 +45,13 @@ for tc in range(1,TC+1):
                     flag = 0
                     continue
                 
-                if cnt >= result:
+                if cnt > result:
                     result = cnt
-                    results.append((cnt,nums[i][j]))
+                    results = nums[i][j]
+                elif cnt == result:
+                    results = min(results,nums[i][j])
                 break
 
-    results.sort(key=lambda x: x[1])
-    results.sort(key=lambda x: x[0], reverse=True)
-
-    print(f'#{tc} {results[0][1]} {results[0][0]}')
+    print(f'#{tc} {results} {result}')
 
     
