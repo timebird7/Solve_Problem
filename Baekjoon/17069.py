@@ -1,8 +1,7 @@
 import sys
-import collections
 
 def cango(i,j,d):
-    global nums,cnt
+    global nums
     if i<0 or i>N-1 or j<0 or j>N-1:
         return False
 
@@ -21,8 +20,6 @@ nums = [0]*N
 for n in range(N):
     nums[n] = list(map(int,sys.stdin.readline().split()))
 
-starts = collections.deque([((0,1),0)])
-cnt = 0
 result = [[[0 for j in range(3)] for k in range(N)] for n in range(N)]
 result[0][1][0] = 1
 
