@@ -7,6 +7,7 @@ def findred(rboard):
         for j in range(M):
             if rboard[i][j] == 'R':
                 return [i,j]
+    return 0
 
 def findblue(rboard):
     global N,M
@@ -14,6 +15,7 @@ def findblue(rboard):
         for j in range(M):
             if rboard[i][j] == 'B':
                 return [i,j]
+    return 0
 
 def goup(rboard,rred,rblue):
     global flag
@@ -99,7 +101,7 @@ def goup(rboard,rred,rblue):
         return board
     elif (fflag, sflag) == (0,1):
         flag = 1
-        return rboard
+        return board
     elif (fflag, sflag) == (1,0):
         return rboard
     elif (fflag, sflag) == (1,1):
@@ -188,7 +190,7 @@ def godown(rboard,rred,rblue):
         return board
     elif (fflag, sflag) == (0,1):
         flag = 1
-        return rboard
+        return board
     elif (fflag, sflag) == (1,0):
         return rboard
     elif (fflag, sflag) == (1,1):
@@ -277,7 +279,7 @@ def goleft(rboard,rred,rblue):
         return board
     elif (fflag, sflag) == (0,1):
         flag = 1
-        return rboard
+        return board
     elif (fflag, sflag) == (1,0):
         return rboard
     elif (fflag, sflag) == (1,1):
@@ -366,7 +368,7 @@ def goright(rboard,rred,rblue):
         return board
     elif (fflag, sflag) == (0,1):
         flag = 1
-        return rboard
+        return board
     elif (fflag, sflag) == (1,0):
         return rboard
     elif (fflag, sflag) == (1,1):
@@ -378,9 +380,10 @@ rboard = [0]*N
 for n in range(N):
     rboard[n] = list(input())
 
-queue = deque([rboard,''])
+queue = deque([[rboard,'']])
 cnt = 0
-history = deque([rboard,''])
+history = deque([rboard])
+ans = ''
 
 while True:
     cnt += 1
@@ -393,21 +396,31 @@ while True:
             continue
         rup = goup(q[0],rred,rblue)
         if rup not in history:
-            tmp.append([rup,'%s%s'%(q[1],'U')])     
+            tmp.append([rup,'%s%s'%(q[1],'U')])  
+            history.append(rup)   
         rdown = godown(q[0],rred,rblue)
         if rdown not in history:
-            tmp.append([rdown,'%s%s'%(q[1],'D')])       
+            tmp.append([rdown,'%s%s'%(q[1],'D')])    
+            history.append(rdown)    
         rleft = goleft(q[0],rred,rblue)
         if rleft not in history:
-            tmp.append([rleft,'%s%s'%(q[1],'L')])        
+            tmp.append([rleft,'%s%s'%(q[1],'L')])    
+            history.append(rleft)     
         rright = goright(q[0],rred,rblue)
         if rright not in history:
-            tmp.append([rright,'%s%s'%(q[1],'R')])     
+            tmp.append([rright,'%s%s'%(q[1],'R')])   
+            history.append(rright)   
 
     queue = deepcopy(tmp)
-    history.extend(tmp)
+    
 
     if flag:
+        for q in queue:
+            rred = findred(q[0])
+            rblue = findblue(q[0])
+            if rred == 0 and rblue:
+                ans = q[1]
+                break
         break
 
     if not queue:
@@ -419,3 +432,4 @@ while True:
         break
 
 print(cnt)
+print(ans)
