@@ -41,29 +41,26 @@ def test(road,X):
     return True
 
 
-TC = int(input())
+N,X = map(int,input().split())
 
-for tc in range(1,TC+1):
-    N,X = map(int,input().split())
+nums = [0]*N
+cnt = 0
 
-    nums = [0]*N
-    cnt = 0
-    
 
-    for n in range(N):
-        nums[n] = list(map(int,input().split()))
-        visited = []
-        if test(nums[n],X):
-            cnt += 1
+for n in range(N):
+    nums[n] = list(map(int,input().split()))
+    visited = []
+    if test(nums[n],X):
+        cnt += 1
 
-    for j in range(N):
-        tmp = []
-        for i in range(N):
-            tmp.append(nums[i][j])
-        visited = []
-        if test(tmp,X):
-            cnt += 1
+for j in range(N):
+    tmp = []
+    for i in range(N):
+        tmp.append(nums[i][j])
+    visited = []
+    if test(tmp,X):
+        cnt += 1
 
-    print(f'#{tc} {cnt}')
+print(cnt)
 
 
